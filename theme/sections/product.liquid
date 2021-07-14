@@ -1,0 +1,138 @@
+
+<div itemscope itemtype="http://schema.org/Product" class="product-scope container">
+	<meta itemprop="url" content="{{ shop.url }}{{ product.url }}" />
+	<meta itemprop="image" content="{{ product.featured_image.src | product_img_url: 'grande' }}" />
+	<div class="row">
+
+		<div class="single_product__img col-md-6 col-xl-7">
+            <div class="slider swiper-container">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <img id="primary_img_{{ section.id }}" src="{{ product.images.first | product_img_url: '660x525', crop: section.settings.image_alignment }}">
+                    </div>
+                </div>
+            </div>
+
+            <div class="gallery_thumbs">
+                <div class="swiper-wrapper">
+                    {% for image in product.images offset:1 %}
+                        <div class="swiper-slide">
+                            <img src="{{ image.src | product_img_url: '64x64', crop: section.settings.image_alignment }}" alt="">
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+
+
+		<div class="single_product__info col-md-6 col-xl-5">
+			<div class="single_product__details">
+				<form action="/cart/add" method="post" enctype="multipart/form-data" data-section="{{ section.id }}">
+					
+					<div class="details_wrapper">
+
+						<h2 itemprop="name" class="single_product__title">{{ product.title }}</h2>
+
+                      	<div class="single_product__options {% if product.variants.size == 1 and product.variants.first.title contains 'Default' %}hidden{% endif %}">
+							{{ section.settings.options_title }}
+                          	<select name="id" id="product_select_{{ section.id }}">
+								{% for variant in product.variants %}
+									<option value="{{ variant.id }}">{{ variant.title | escape }}</option>
+								{% endfor %}
+							</select>
+						</div>
+                      
+						<p class="single_product__price"><span id="single_product__price-{{ section.id }}"><span class="money money_main">{{ product.price | money }}</span></span></p>
+
+						<div class="single_product__quantity">
+
+							<div class="quantity_box">
+                              	<span class="quantity_modifier quantity_down">
+                                       -
+                                    </span>
+                                    <input id="single_product__quantity-{{ section.id }}" class="quantity_input" type="text" name="quantity" value="1">
+								
+                                    <span class="quantity_modifier quantity_up">
+                                        +
+                                    </span>
+								<button type="submit" name="add" class="btn" id="single_product__addtocart-{{ section.id }}">
+									Add To Cart
+								</button>
+							</div>
+
+						</div>
+                      
+                      	{% if section.settings.show_short_desk %}
+							<div class="single_product__short_desk">
+								{{ product.description | strip_html | truncate: 250 }}
+							</div>
+						{% endif %}
+
+					</div>
+				</form>
+
+			</div>
+
+		</div>
+	</div>
+
+</div>
+
+{% schema %}
+{
+	"name": "Product template",
+	"class": "section section_single-product section_product section_template__product",
+	"settings": [
+
+		// IMAGES ==========================================================================================
+		{
+			"type": "header",
+			"content": "Images"
+		},
+		{
+			"type": "select",
+			"id": "image_alignment",
+			"label": "Image alignment",
+			"options": [
+				{
+					"value": "top",
+					"label": "Top"
+				},
+				{
+					"value": "center",
+					"label": "Middle"
+				},
+				{
+					"value": "bottom",
+					"label": "Bottom"
+				}
+			]
+		},
+
+
+		// SETTINGS ========================================================================================
+		{
+			"type": "header",
+			"content": "Settings"
+		},
+		{
+          "type": "text",
+          "id": "options_title",
+          "label": "Options title"
+        },
+		{
+			"type": "checkbox",
+			"id": "show_short_desk",
+			"label": "Show Short description"
+		}
+	]
+}
+{% endschema %}
+
+<script>
+	var producText = {
+		items: {{ 'layout.product.items' | t | json }},
+	};
+	var productImage = '{{ product_image }}';
+</script>

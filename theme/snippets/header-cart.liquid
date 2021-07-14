@@ -1,0 +1,129 @@
+<div class="header_cart" id="main__cart_item">
+	<a class="cart_link" href="/cart">
+	<span id="cart_items" class="header_cart_items {% if cart.item_count == 0 %}hidden{% endif %}"> {{ cart.item_count }} </span>
+	<svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 1H3.0374L6.42424 17.7756C6.45112 18.4521 6.98872 18.9932 7.66071 18.9932H23.9498" stroke="#202020"/>
+      <path d="M3.5 3.81398H22.9015C23.3316 3.81398 23.7079 3.97632 23.9767 4.30101C24.2186 4.6257 24.3261 5.03157 24.2455 5.46449L22.7133 13.5006C22.5521 14.3664 21.7188 15.0428 20.8586 15.0699H5.86646" stroke="#202020"/>
+      <path d="M9.99901 20.6708C8.8163 20.6708 7.84863 21.6449 7.84863 22.8354C7.84863 24.0259 8.8163 25 9.99901 25C11.1817 25 12.1494 24.0259 12.1494 22.8354C12.1494 21.6449 11.1817 20.6708 9.99901 20.6708Z"/>
+      <path d="M9.99901 20.6708C8.8163 20.6708 7.84863 21.6449 7.84863 22.8354C7.84863 24.0259 8.8163 25 9.99901 25C11.1817 25 12.1494 24.0259 12.1494 22.8354C12.1494 21.6449 11.1817 20.6708 9.99901 20.6708Z" stroke="#202020" stroke-width="2" mask="url(#path-3-inside-1)"/>
+      <path d="M19.918 20.6708C18.7352 20.6708 17.7676 21.6449 17.7676 22.8354C17.7676 24.0259 18.7352 25 19.918 25C21.1007 25 22.0683 24.0259 22.0683 22.8354C22.0683 21.6449 21.1007 20.6708 19.918 20.6708Z"/>
+      <path d="M19.918 20.6708C18.7352 20.6708 17.7676 21.6449 17.7676 22.8354C17.7676 24.0259 18.7352 25 19.918 25C21.1007 25 22.0683 24.0259 22.0683 22.8354C22.0683 21.6449 21.1007 20.6708 19.918 20.6708Z" stroke="#202020" stroke-width="2" mask="url(#path-4-inside-2)"/>
+	  <path d="M26.9738 1.706C27.3938 1.82 27.7178 2.018 27.9458 2.3C28.1798 2.576 28.2968 2.909 28.2968 3.299C28.2968 3.845 28.0898 4.277 27.6758 4.595C27.2618 4.907 26.7038 5.063 26.0018 5.063C25.2998 5.063 24.7418 4.907 24.3278 4.595C23.9138 4.277 23.7068 3.845 23.7068 3.299C23.7068 2.909 23.8238 2.573 24.0578 2.291C24.2978 2.009 24.6248 1.814 25.0388 1.706C24.6548 1.592 24.3608 1.406 24.1568 1.148C23.9528 0.884 23.8508 0.575 23.8508 0.221C23.8508 -0.121 23.9408 -0.418 24.1208 -0.67C24.3008 -0.928 24.5528 -1.126 24.8768 -1.264C25.2068 -1.408 25.5818 -1.48 26.0018 -1.48C26.4218 -1.48 26.7938 -1.408 27.1178 -1.264C27.4478 -1.126 27.7028 -0.928 27.8828 -0.67C28.0628 -0.418 28.1528 -0.121 28.1528 0.221C28.1528 0.575 28.0478 0.884 27.8378 1.148C27.6338 1.406 27.3458 1.592 26.9738 1.706ZM24.5888 0.275C24.5888 0.617 24.7148 0.896 24.9668 1.112C25.2248 1.322 25.5698 1.451 26.0018 1.499C26.4338 1.451 26.7758 1.322 27.0278 1.112C27.2858 0.896 27.4148 0.617 27.4148 0.275C27.4148 -0.0790004 27.2888 -0.358 27.0368 -0.562C26.7908 -0.766 26.4458 -0.868 26.0018 -0.868C25.5578 -0.868 25.2098 -0.766 24.9578 -0.562C24.7118 -0.358 24.5888 -0.0790004 24.5888 0.275ZM26.0018 4.451C26.5058 4.451 26.8928 4.349 27.1628 4.145C27.4328 3.941 27.5678 3.644 27.5678 3.254C27.5678 2.9 27.4238 2.618 27.1358 2.408C26.8538 2.192 26.4758 2.06 26.0018 2.012C25.5278 2.06 25.1468 2.192 24.8588 2.408C24.5768 2.618 24.4358 2.9 24.4358 3.254C24.4358 3.644 24.5708 3.941 24.8408 4.145C25.1108 4.349 25.4978 4.451 26.0018 4.451Z" fill="white"/>
+    </svg>
+
+	</a>
+
+	{% if ajax %}
+		<script>
+			theme.cartAjaxOn = true;
+			theme.cartAjaxTextEmpty = '{{ 'pages.cart.empty_cart_1' | t }}';
+			theme.cartAjaxTextTotalPrice = '{{ 'pages.cart.total_price' | t }}';
+			theme.cartAjaxTextGoCart = '{{ 'pages.cart.go_to_cart' | t }}';
+			theme.cartAjaxTextClearCart = '{{ 'pages.cart.clear_cart' | t }}';
+		</script>
+		<div class="cart_content_wrap">
+			<div class="cart_content_preloader off">
+				<div class="global_loader"></div>
+			</div>
+			<div id="cart_content_box">
+				{% if cart.item_count > 0 %}
+					<ul class="cart_list_items">
+						{% for item in cart.items  %}
+							<li class="cart_items" data-id="{{ forloop.index }}">
+								<img class="item_img" src="{{ item | img_url: '64x64', crop: 'center' }}"  alt="{{ item.title | escape }}" />
+								<div class="item_desc">
+									<a class="product_title" href="{{ item.product.url }}">{{ item.product.title | truncate:25 }}</a>
+									<span class="money">{{ item.price | money }}</span>
+									<p class="product_quantity">Quantity: {{ item.quantity }}</p>
+									<a class="item_remove_btn" href="#" item-id="{{ item.id }}">
+										<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+											<path d="M7 0H13V2H18V4H2V2H7V0Z"/>
+											<path fill-rule="evenodd" clip-rule="evenodd" d="M4 20H16V6H4V20ZM14 18H6V8H14V18Z" />
+										</svg>
+									</a>
+								</div>
+							</li>
+						{% endfor %} 
+					</ul>
+
+					<div class="box_footer">
+						<p class="cart_total"><b>Subtotal: </b><span class="money">{{ cart.total_price | money }}</span></p>
+						<a class="btn btn-transparent" href="/cart">View cart</a>
+                      	<a class="btn" href="/checkout">Proceed to heckout</a>
+					</div>
+
+				{% else %}
+					<p class="alert alert-warning">empty cart</p>
+
+				{% endif %}
+			</div>
+		</div>
+	{% else %}
+		<script>
+			theme.cartAjaxOn = false;
+		</script>
+	{% endif %}
+</div>
+
+<script>
+ jQuery(function($){ 
+  	// AJAX CART  ===============================================================================================================
+	function ajaxCartRender() {
+		$('.cart_content_preloader').removeClass('off');
+		jQuery.getJSON('/cart.js', function(data) {
+			var newHtml = '';
+
+			if ( data.items.length == 0 ) {
+				newHtml += '<p class="alert alert-warning">' + theme.cartAjaxTextEmpty + '</p>';
+			} else {
+				data.items.forEach( function( item, i ) {
+					var image_url = item.image.replace('.png','_140x140_crop_center.png').replace('.jpg','_140x140_crop_center.jpg');
+					newHtml += '<li class="cart_items"><img class="item_img" src="' + image_url + '"  alt="' + item.title + '" /><div class="item_desc"><a class="product_title" href="' + item.url + '">' + item.title.slice(0,50) + '</a><span class="money">' + Shopify.formatMoney(item.price, theme.moneyFormat) + '</span><p class="product_quantity">Quantity: ' + item.quantity + '</p><a class="item_remove_btn" href="#" item-id="' + item.id + '"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 0H13V2H18V4H2V2H7V0Z"/><path fill-rule="evenodd" clip-rule="evenodd" d="M4 20H16V6H4V20ZM14 18H6V8H14V18Z"/></svg></a></div></li>';
+				});
+
+				newHtml += '<div class="box_footer"><p class="cart_total"><b>' + theme.cartAjaxTextTotalPrice + ': </b><span class="money">' + Shopify.formatMoney(data.total_price, theme.moneyFormat)  + '</span></p><a id="clear_cart_all_items" class="cart_clear" href="/cart/clear"><i class="fa fa-refresh" title="' + theme.cartAjaxTextClearCart + '"></i></a><a class="btn btn_inverted" href="/checkout">Checkout</a><a class="btn" href="/cart">' + theme.cartAjaxTextGoCart + '</a></div>';
+					
+			}
+
+			$('#cart_content_box').html(newHtml);
+			$('.header_cart #cart_items').html(data.item_count).removeClass('hidden');
+			removeItemFromCart();
+			clearAllItemsFromCart();
+			$('.cart_content_preloader').addClass('off');
+		});
+	};
+
+	// REMOVE AJAX CART ITEMS
+	function removeItemFromCart(){
+		$('.header_cart .item_remove_btn').on('click', function(e){
+			e.preventDefault();
+			console.log('klick');
+			itemId = this.getAttribute('item-id');
+			var postData = "updates[" + itemId + "]=0";
+			jQuery.post('/cart/update.js', postData, function(){
+				ajaxCartRender();
+				
+			});
+		});
+	};
+	removeItemFromCart();
+
+	// CLEAR AJAX CART
+	function clearAllItemsFromCart(){
+		$('#cart_content_box #clear_cart_all_items').on('click', function(e){
+			e.preventDefault();
+
+			jQuery.post('/cart/clear.js', function(){
+				ajaxCartRender();
+			});
+		});
+	};
+	clearAllItemsFromCart();
+
+
+	// JQUERY.AJAX-CART.JS MINI
+	jQuery(document).ready(function(t){var e={TOTAL_ITEMS:".cart-total-items",TOTAL_PRICE:".cart-total-price",SUBMIT_ADD_TO_CART:"input[type=image], input.submit-add-to-cart",FORM_UPDATE_CART:"form[name=cartform]",FORM_UPDATE_CART_BUTTON:"form[name=cartform] input[name=update]",FORM_UPDATE_CART_BUTTONS:"input[type=image], input.button-update-cart",LINE_ITEM_ROW:".cart-line-item",LINE_ITEM_QUANTITY_PREFIX:"input#updates_",LINE_ITEM_PRICE_PREFIX:".cart-line-item-price-",LINE_ITEM_REMOVE:".remove a",EMPTY_CART_MESSAGE:"#empty"},a=function(t){return Shopify.formatMoney(t,"${% raw %}{{ amount }}{% endraw %}")};t(document).on("submit",'form[action*="/cart/add"]',function(e){e.preventDefault(),t(e.target).find(".btn-cart").attr("disabled",!0).addClass("disabled"),Shopify.addItemFromForm(e.target)}),t(document).on("click",".btn-cart",function(){t.fancybox.showLoading(),t.fancybox.helpers.overlay.open({parent:t("body")})}),t(e.FORM_UPDATE_CART_BUTTON).click(function(a){a.preventDefault(),t(a.target.form).find(e.FORM_UPDATE_CART_BUTTONS).attr("disabled",!0).addClass("disabled"),Shopify.updateCartFromForm(a.target.form)}),t(e.FORM_UPDATE_CART).delegate(e.LINE_ITEM_REMOVE,"click",function(a){a.preventDefault();var i=this.href.split("/").pop().split("?").shift();Shopify.removeItem(i),t(this).parents(e.LINE_ITEM_ROW).remove()}),Shopify.onItemAdded=function(e,a){t(a).find(".btn-cart").attr("disabled",!1).removeClass("disabled"),Shopify.getCart()},Shopify.onCartUpdate=function(i,n){t("#cart_items").html(i.item_count);if(theme.cartAjaxOn){ajaxCartRender();}var r=a(i.total_price);t(e.TOTAL_PRICE).html(r),t(e.EMPTY_CART_MESSAGE).length>0&&0==i.item_count&&(t(e.FORM_UPDATE_CART).hide(),t(e.EMPTY_CART_MESSAGE).show()),n=n||!1,n&&i.item_count>0&&(t.each(i.items,function(i,n){t(e.LINE_ITEM_PRICE_PREFIX+n.id).html(a(n.line_price)),t(e.LINE_ITEM_QUANTITY_PREFIX+n.id).val(n.quantity)}),t(n).find("input[value=0]").parents(e.LINE_ITEM_ROW).remove(),t(n).find(e.FORM_UPDATE_CART_BUTTONS).attr("disabled",!1).removeClass("disabled"))},Shopify.onError=function(){t("form").find(".btn-cart").attr("disabled",!1).removeClass("disabled")}});
+
+});
+  
+</script>
